@@ -24,6 +24,10 @@ oc adm policy add-scc-to-user privileged -z default -n ${PROJ}
 
 5) Begin by reviewing the [Weaviate Kubernetes Installation docs](https://weaviate.io/developers/weaviate/installation/kubernetes). As a quick start, configure the [example helm chart values](values.yaml) file in this repo.
     - Set your desired api keys in the example `values.yaml` file. See lines 153 - 154.
+      - This example `values.yaml` enables the following:
+        - `apikey`
+        - `text2vec-huggingface`
+        - `generative-openai`
     - Add the weaviate repo to the helm configuration.
 
 ```bash
@@ -164,9 +168,45 @@ importing question: 10
 }
 ```
 
-11) Use the [Weaviate Cloud Console](https://console.weaviate.cloud/) to make GraphQL queries.
+11) Generative AI example (uses OpenAI)
+```
+python 02-weaviate-huggingface-openai.py
+```
+```json
+{
+    "data": {
+        "Get": {
+            "Question": [
+                {
+                    "_additional": {
+                        "generate": {
+                            "error": null,
+                            "singleResult": "An elephant is a really big animal with a long trunk, big ears, and a strong body. They are usually gray in color. Elephants are very smart and friendly. They live in places called forests and grasslands. They eat lots of plants and fruits. They use their long trunk to grab food and drink water. Elephants also use their trunk to say hello to other elephants by touching them gently. They have big ears that help them hear really well. Elephants are very strong and can carry heavy things with their trunk. They are also great swimmers and love to play in the water. Elephants are loved by many people because they are so amazing and special!"
+                        }
+                    },
+                    "answer": "Elephant",
+                    "category": "ANIMALS",
+                    "question": "It's the only living mammal in the order Proboseidea"
+                },
+                {
+                    "_additional": {
+                        "generate": {
+                            "error": null,
+                            "singleResult": "DNA is like a special code that tells our bodies how to grow and work. It's like a recipe book that has all the instructions for making you who you are. Just like a recipe book tells you how to make yummy cookies, DNA tells your body how to make your eyes, hair, and even how tall you will be. It's really amazing because it's what makes you unique and different from everyone else!"
+                        }
+                    },
+                    "answer": "DNA",
+                    "category": "SCIENCE",
+                    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance"
+                }
+            ]
+        }
+    }
+}
+```
+12) Use the [Weaviate Cloud Console](https://console.weaviate.cloud/) to make GraphQL queries.
 
-- Add a route for your external cluster
+- Add an Openshift route for your external cluster.
 - Navigate to the query editor and configure the header.
 ```json
 {
