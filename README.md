@@ -171,7 +171,8 @@ importing question: 10
 11) Generative AI example (uses OpenAI)
 ```
 export OPENAI_API_KEY=my_openai_api_key
-
+```
+```
 python 02-weaviate-huggingface-openai.py
 ```
 ```json
