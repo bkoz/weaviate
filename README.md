@@ -175,6 +175,7 @@ export OPENAI_API_KEY=my_openai_api_key
 ```
 python 02-weaviate-huggingface-openai.py
 ```
+Example output:
 ```json
 {
     "data": {
