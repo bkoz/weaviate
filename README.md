@@ -168,7 +168,7 @@ importing question: 10
 }
 ```
 
-11) Generative AI example (uses OpenAI)
+11) This generative AI example requires an [OpenAI API token](https://platform.openai.com/account/api-keys).
 ```
 export OPENAI_API_KEY=my_openai_api_key
 ```
