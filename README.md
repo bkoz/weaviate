@@ -78,6 +78,14 @@ export HUGGINGFACE_API_KEY=your-huggingface-api-key
 Create a schema and import some objects.
 
 ```bash
+python 01-create-schema-import-data.py
+```
+The first time running may produce the following error if the huggingface transformer model is not quite ready.
+```
+{'error': [{'message': 'update vector: failed with status: 503 error: Model sentence-transformers/msmarco-bert-base-dot-v5 is currently loading estimated time: 20'}]}
+```
+
+```bash
 python 01-weaviate-huggingface.py
 ```
 
