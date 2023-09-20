@@ -60,7 +60,7 @@ export WEAVIATE_API_KEY='weaviate-api-key-from-values-file-above'
 9) Test the connection.
 
 ```bash
-python 00-weaviate-test-connection.py 
+python 00-test-connection.py 
 ```
 
 Example output:
@@ -70,23 +70,18 @@ WEAVIATE_URL https://weaviate.apps.openshift.com is_ready() = True
 cluster.get_nodes_status(): [{'batchStats': {'queueLength': 0, 'ratePerSecond': 0}, 'gitHash': '8172acb', 'name': 'weaviate-0', 'shards': [{'class': 'Article', 'name': '7dLd8SoAYAEx', 'objectCount': 100}, {'class': 'Author', 'name': 'HaNbOTa3gorn', 'objectCount': 128}, {'class': 'Question', 'name': 's592CBYYm2N4', 'objectCount': 10}], 'stats': {'objectCount': 538, 'shardCount': 4}, 'status': 'HEALTHY', 'version': '1.21.0'}]
 ```
 
-10) The next example requires a [HuggingFace api token](https://huggingface.co/settings/tokens).
+10) Create a schema and import some objects.
+
+This example requires a [HuggingFace api token](https://huggingface.co/settings/tokens).
 ```bash
 export HUGGINGFACE_API_KEY=your-huggingface-api-key
 ```
-
-Create a schema and import some objects.
-
 ```bash
 python 01-create-schema-import-data.py
 ```
 The first time running may produce the following error if the huggingface transformer model is not quite ready.
 ```
 {'error': [{'message': 'update vector: failed with status: 503 error: Model sentence-transformers/msmarco-bert-base-dot-v5 is currently loading estimated time: 20'}]}
-```
-
-```bash
-python 01-weaviate-huggingface.py
 ```
 
 Example output:
@@ -108,6 +103,14 @@ importing question: 8
 importing question: 9
 importing question: 10
 ```
+
+11) Perform a semantic search.
+
+```bash
+python 02-semantic-search.py
+```
+
+Example output:
 ```json
 {
     "data": {
@@ -176,12 +179,14 @@ importing question: 10
 }
 ```
 
-11) This generative AI example requires an [OpenAI API token](https://platform.openai.com/account/api-keys).
+12) Perform a generative search.
+
+This generative AI example requires an [OpenAI API token](https://platform.openai.com/account/api-keys).
 ```
 export OPENAI_API_KEY=my_openai_api_key
 ```
 ```
-python 02-weaviate-huggingface-openai.py
+python 03-generative-search.py
 ```
 Example output:
 ```json
@@ -216,7 +221,7 @@ Example output:
     }
 }
 ```
-12) Use the [Weaviate Cloud Console](https://console.weaviate.cloud/) to make GraphQL queries.
+13) Use the [Weaviate Cloud Console](https://console.weaviate.cloud/) to make GraphQL queries.
 
 - Add an Openshift route for your external cluster.
 - Navigate to the query editor and configure the header.
@@ -333,3 +338,8 @@ Example output:
 }
 ```
 
+14) Delete the schema if necessary.
+
+```bash
+python 04-delete-schema.py
+```
