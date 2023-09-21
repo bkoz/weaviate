@@ -44,14 +44,14 @@ helm upgrade --install "weaviate" weaviate/weaviate --namespace ${PROJ} --values
 oc create route edge weaviate --service=weaviate --insecure-policy='Redirect'
 ```
 
-8) Create a python virtual environment and try a few of the [example clients](src). The python examples expect the `WEAVIATE_HOST` and `WEAVIATE_API_KEY` variables to be set.
+8) Create a python virtual environment and try a few of the [example clients](src). The python examples expect the `WEAVIATE_URL` and `WEAVIATE_API_KEY` variables to be set.
 ```bash
 python -m venv venv
 source venv
 pip install -r requirements.txt
 ```
 ```bash
-export WEAVIATE_HOST=$(oc get routes weaviate -n ${PROJ} -o jsonpath='{.spec.host}')
+export WEAVIATE_URL=https://$(oc get routes weaviate -n ${PROJ} -o jsonpath='{.spec.host}')
 ```
 ```bash
 export WEAVIATE_API_KEY='weaviate-api-key-from-values-file-above'
