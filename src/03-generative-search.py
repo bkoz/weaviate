@@ -11,28 +11,27 @@ logging.basicConfig(level=logging.INFO)
 load_dotenv(override=True)
 
 WEAVIATE_API_KEY = os.getenv("WEAVIATE_API_KEY")
-WEAVIATE_HOST = os.getenv("WEAVIATE_HOST")
-WEAVIATE_URL = f'https://{os.getenv("WEAVIATE_HOST")}'
+WEAVIATE_DEFAULT_URL = "http://localhost:8080"
+WEAVIATE_URL = os.getenv("WEAVIATE_URL", WEAVIATE_DEFAULT_URL)
 HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-if WEAVIATE_HOST == None:
-    logging.error('WEAVIATE_HOST is not set.')
-    exit(1)
+if WEAVIATE_URL == WEAVIATE_DEFAULT_URL:
+    logging.info('WEAVIATE_URL is not set, using http://localhost:8080')
 if WEAVIATE_API_KEY == None:
-    logging.error('WEAVIATE_API_KEY is not set.')
-    exit(1)
+    logging.info('WEAVIATE_API_KEY is not set, using anonymous access.')
+    auth_config = None
+else:
+    logging.info('WEAVIATE_API_KEY is set, using API key access.')
+    auth_config = weaviate.AuthApiKey(api_key = WEAVIATE_API_KEY)
 if HUGGINGFACE_API_KEY == None:
     logging.error('HUGGINGFACE_API_KEY is not set.')
     exit(1)
 if OPENAI_API_KEY == None:
-    logging.error('OPENAI_API_KEY is not set.')
+    logging.error('OPENAI_API_KEY is not set, exiting!')
     exit(1)
 
-logging.info(f'WEAVIATE_URL: {WEAVIATE_URL}')
-
-auth_config = weaviate.AuthApiKey(api_key = WEAVIATE_API_KEY)
-# client = weaviate.Client(url = WEAVIATE_URL, auth_client_secret=auth_config)
+logging.info("WEAVIATE_URL: %s", WEAVIATE_URL)
 
 client = weaviate.Client(
     url=WEAVIATE_URL,
