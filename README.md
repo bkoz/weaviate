@@ -49,6 +49,17 @@ oc create route edge weaviate --service=weaviate --insecure-policy='Redirect'
 export WEAVIATE_URL=https://$(oc get routes weaviate -n ${PROJ} -o jsonpath='{.spec.host}')
 curl ${WEAVIATE_URL}
 ```
+
+Sample output
+```json
+{
+  "links": {
+    "href": "/v1",
+    "name": "api v1",
+    "documentationHref": "https://weaviate.io/developers/weaviate/current/"
+  }
+}
+```
 ## Sample Applications
 
 8) Create a python virtual environment and try a few of the [example clients](src). The python examples expect the `WEAVIATE_URL` and `WEAVIATE_API_KEY` variables to be set.
@@ -70,7 +81,7 @@ export WEAVIATE_API_KEY='weaviate-api-key-from-values-file-above'
 python 00-test-connection.py 
 ```
 
-Example output:
+Sample output:
 ```bash
 WEAVIATE_URL https://weaviate.apps.openshift.com is_ready() = True
 
@@ -91,7 +102,7 @@ The first time running may produce the following error if the huggingface transf
 {'error': [{'message': 'update vector: failed with status: 503 error: Model sentence-transformers/msmarco-bert-base-dot-v5 is currently loading estimated time: 20'}]}
 ```
 
-Example output:
+Sample output:
 ```
 WEAVIATE_URL: https://weaviate-weaviate.apps.ocp.sandbox1234.openshift.com
 
@@ -117,7 +128,7 @@ importing question: 10
 python 02-semantic-search.py
 ```
 
-Example output:
+Sample output:
 ```json
 {
     "data": {
@@ -195,7 +206,7 @@ export OPENAI_API_KEY=my_openai_api_key
 ```
 python 03-generative-search.py
 ```
-Example output:
+Sample output:
 ```json
 {
     "data": {
@@ -269,7 +280,7 @@ python 05-gradio
 }
 ```
 
-Example output:
+Sample output:
 ```json
 {
   "data": {
