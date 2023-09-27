@@ -7,7 +7,7 @@ Running [Weaviate](https://weaviate.io/) on Red Hat Openshift
 - `helm` (v3.8.1)
 - A workstation to run the `oc` and `helm` [command line tools](https://mirror.openshift.com/pub/openshift-v4/clients/).
 
-### Steps
+### Installation
 1) Install the `oc` and `helm` programs on your client workstation.
 
 1) Login with `cluster-admin` privileges and create an openshift project
@@ -44,6 +44,13 @@ helm upgrade --install "weaviate" weaviate/weaviate --namespace ${PROJ} --values
 oc create route edge weaviate --service=weaviate --insecure-policy='Redirect'
 ```
 
+## Testing
+```bash
+export WEAVIATE_URL=https://$(oc get routes weaviate -n ${PROJ} -o jsonpath='{.spec.host}')
+curl ${WEAVIATE_URL}
+```
+## Sample Applications
+
 8) Create a python virtual environment and try a few of the [example clients](src). The python examples expect the `WEAVIATE_URL` and `WEAVIATE_API_KEY` variables to be set.
 ```bash
 python -m venv venv
@@ -57,7 +64,7 @@ export WEAVIATE_URL=https://$(oc get routes weaviate -n ${PROJ} -o jsonpath='{.s
 export WEAVIATE_API_KEY='weaviate-api-key-from-values-file-above'
 ```
 
-9) Test the connection.
+9) Test the connection with the python sdk.
 
 ```bash
 python 00-test-connection.py 
@@ -179,7 +186,7 @@ Example output:
 }
 ```
 
-12) Perform a generative search.
+12) Perform a retrieval augmented generative search.
 
 This generative AI example requires an [OpenAI API token](https://platform.openai.com/account/api-keys).
 ```
@@ -221,7 +228,13 @@ Example output:
     }
 }
 ```
-13) Use the [Weaviate Cloud Console](https://console.weaviate.cloud/) to make GraphQL queries.
+13) Run the Gradio front end application example and visit
+the port reported with a web browser.
+```bash
+python 05-gradio
+```
+
+14) Use the [Weaviate Cloud Console](https://console.weaviate.cloud/) to make GraphQL queries.
 
 - Add an Openshift route for your external cluster.
 - Navigate to the query editor and configure the header.
