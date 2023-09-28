@@ -199,6 +199,8 @@ Sample output:
 
 12) Perform a retrieval augmented generative search.
 
+![rag-demo](images/retrieval-augmented-generation-demo.png "retrieval augmented generative search")
+
 This generative AI example requires an [OpenAI API token](https://platform.openai.com/account/api-keys).
 ```
 export OPENAI_API_KEY=my_openai_api_key
