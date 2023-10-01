@@ -28,6 +28,6 @@ commands:
       label: "Run application"
       component: tools
       workingDir: ${PROJECT_SOURCE}
-      commandLine: "python3 hello-world.py"
+      commandLine: "python3 --version"
       group:
         kind: run
