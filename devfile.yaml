@@ -25,7 +25,7 @@ components:
 commands:
   - id: run-application
     exec:
-      label: "Run application"
+      label: "Display Python version"
       component: tools
       workingDir: ${PROJECT_SOURCE}
       commandLine: "python3 --version"
