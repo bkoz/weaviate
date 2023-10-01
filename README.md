@@ -17,12 +17,7 @@ PROJ=weaviate
 oc new-project ${PROJ}
 ```
 
-4) At the time of this writing, weaviate needs to run as a privileged pod. Grant the default service account the neccessary privileges.
-```bash
-oc adm policy add-scc-to-user privileged -z default -n ${PROJ}
-```
-
-5) Begin by reviewing the [Weaviate Kubernetes Installation docs](https://weaviate.io/developers/weaviate/installation/kubernetes). As a quick start, configure the [example helm chart values](values.yaml) file in this repo.
+1) Begin by reviewing the [Weaviate Kubernetes Installation docs](https://weaviate.io/developers/weaviate/installation/kubernetes). As a quick start, configure the [example helm chart values](values.yaml) file in this repo.
     - Set your desired api keys in the example `values.yaml` file. See lines 153 - 154.
       - This example `values.yaml` enables the following:
         - `apikey`
@@ -34,12 +29,12 @@ oc adm policy add-scc-to-user privileged -z default -n ${PROJ}
 helm repo add weaviate https://weaviate.github.io/weaviate-helm
 ```
 
-6) Run the helm installer and wait for the weaviate pod to become ready.
+1) Run the helm installer and wait for the weaviate pod to become ready.
 ```bash
 helm upgrade --install "weaviate" weaviate/weaviate --namespace ${PROJ} --values ./values.yaml
 ```
 
-7) Create a route
+1) Expose the Weaviate service as a route
 ```bash
 oc create route edge weaviate --service=weaviate --insecure-policy='Redirect'
 ```

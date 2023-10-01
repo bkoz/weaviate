@@ -46,7 +46,7 @@ args:
 #   https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 initContainers:
   sysctlInitContainer:
-    enabled: true
+    enabled: false
     sysctlVmMaxMapCount: 524288
     image:
       registry: docker.io
