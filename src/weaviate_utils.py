@@ -4,8 +4,15 @@ import logging
 from dotenv import load_dotenv
 
 def weaviate_connection() -> weaviate.Client:
-    """Connect to the weaviate server.
-       Reads needed environment variables.
+    """
+    Description:
+       Connect to the weaviate server.
+       Reads the following environment variables:
+       WEAVIATE_API_KEY
+       WEAVIATE_URL
+       HUGGINGFACE_API_KEY
+       OPENAI_API_KEY
+
     Returns:
         weaviate.Client: The client connection object
     """
@@ -34,6 +41,13 @@ def weaviate_connection() -> weaviate.Client:
         logging.info('OPENAI_API_KEY is not set.')
 
     logging.info("WEAVIATE_URL: %s", WEAVIATE_URL)
-    client = weaviate.Client(url = WEAVIATE_URL, auth_client_secret=auth_config)
+    client = weaviate.Client(
+    url=WEAVIATE_URL,
+    auth_client_secret=auth_config,
+    additional_headers={
+        "X-HuggingFace-Api-Key": HUGGINGFACE_API_KEY,
+        "X-OpenAI-Api-Key" : OPENAI_API_KEY}
+    )
+
 
     return client
