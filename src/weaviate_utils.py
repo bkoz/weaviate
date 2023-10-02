@@ -41,13 +41,18 @@ def weaviate_connection() -> weaviate.Client:
         logging.info('OPENAI_API_KEY is not set.')
 
     logging.info("WEAVIATE_URL: %s", WEAVIATE_URL)
-    client = weaviate.Client(
-    url=WEAVIATE_URL,
-    auth_client_secret=auth_config,
-    additional_headers={
-        "X-HuggingFace-Api-Key": HUGGINGFACE_API_KEY,
-        "X-OpenAI-Api-Key" : OPENAI_API_KEY}
-    )
+    
+    try:
+        client = weaviate.Client(
+        url=WEAVIATE_URL,
+        auth_client_secret=auth_config,
+        additional_headers={
+            "X-HuggingFace-Api-Key": HUGGINGFACE_API_KEY,
+            "X-OpenAI-Api-Key" : OPENAI_API_KEY}
+        )
+    except:
+        logging.error('Weaviate connection error, exiting!')
+        exit(1)
 
 
     return client
