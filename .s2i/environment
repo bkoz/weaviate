@@ -1,2 +1,2 @@
 
-APP_SCRIPT='/opt/app-root/src/app.py'
+APP_FILE='app.py'
