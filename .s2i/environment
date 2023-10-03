@@ -1,1 +1,1 @@
-APP_SCRIPT=/00-test-connection.py
+APP_SCRIPT=/src/00-test-connection.py
