@@ -10,14 +10,14 @@ Running [Weaviate](https://weaviate.io/) on Red Hat Openshift
 ### Installation
 1) Install the `oc` and `helm` programs on your client workstation.
 
-1) Login with `cluster-admin` privileges and create an openshift project
+2) Login with `cluster-admin` privileges and create an openshift project
 
 ```bash
 PROJ=weaviate
 oc new-project ${PROJ}
 ```
 
-1) Begin by reviewing the [Weaviate Kubernetes Installation docs](https://weaviate.io/developers/weaviate/installation/kubernetes). As a quick start, configure the [example helm chart values](values.yaml) file in this repo.
+3) Begin by reviewing the [Weaviate Kubernetes Installation docs](https://weaviate.io/developers/weaviate/installation/kubernetes). As a quick start, configure the [example helm chart values](values.yaml) file in this repo.
     - Set your desired api keys in the example `values.yaml` file. See lines 153 - 154.
       - This example `values.yaml` enables the following:
         - `apikey`
@@ -29,12 +29,12 @@ oc new-project ${PROJ}
 helm repo add weaviate https://weaviate.github.io/weaviate-helm
 ```
 
-1) Run the helm installer and wait for the weaviate pod to become ready.
+4) Run the helm installer and wait for the weaviate pod to become ready.
 ```bash
 helm upgrade --install "weaviate" weaviate/weaviate --namespace ${PROJ} --values ./values.yaml
 ```
 
-1) Expose the Weaviate service as a route
+5) Expose the Weaviate service as a route
 ```bash
 oc create route edge weaviate --service=weaviate --insecure-policy='Redirect'
 ```
@@ -57,7 +57,7 @@ Sample output
 ```
 ## Sample Applications
 
-8) Create a python virtual environment and try a few of the [example clients](src). The python examples expect the `WEAVIATE_URL` and `WEAVIATE_API_KEY` variables to be set.
+1) Create a python virtual environment and try a few of the [example clients](src). The python examples expect the `WEAVIATE_URL` and `WEAVIATE_API_KEY` variables to be set.
 ```bash
 python -m venv venv
 source venv
@@ -70,7 +70,7 @@ export WEAVIATE_URL=https://$(oc get routes weaviate -n ${PROJ} -o jsonpath='{.s
 export WEAVIATE_API_KEY='weaviate-api-key-from-values-file-above'
 ```
 
-9) Test the connection with the python sdk.
+2) Test the connection with the python sdk.
 
 ```bash
 python 00-test-connection.py 
@@ -83,7 +83,7 @@ WEAVIATE_URL https://weaviate.apps.openshift.com is_ready() = True
 cluster.get_nodes_status(): [{'batchStats': {'queueLength': 0, 'ratePerSecond': 0}, 'gitHash': '8172acb', 'name': 'weaviate-0', 'shards': [{'class': 'Article', 'name': '7dLd8SoAYAEx', 'objectCount': 100}, {'class': 'Author', 'name': 'HaNbOTa3gorn', 'objectCount': 128}, {'class': 'Question', 'name': 's592CBYYm2N4', 'objectCount': 10}], 'stats': {'objectCount': 538, 'shardCount': 4}, 'status': 'HEALTHY', 'version': '1.21.0'}]
 ```
 
-10) Create a schema and import some objects.
+3) Create a schema and import some objects.
 
 This example requires a [HuggingFace api token](https://huggingface.co/settings/tokens).
 ```bash
@@ -117,7 +117,7 @@ importing question: 9
 importing question: 10
 ```
 
-11) Perform a semantic search.
+4) Perform a semantic search.
 
 ```bash
 python 02-semantic-search.py
@@ -192,7 +192,7 @@ Sample output:
 }
 ```
 
-12) Perform a retrieval augmented generative search.
+5) Perform a retrieval augmented generative search.
 
 ![rag-demo](images/retrieval-augmented-generation-demo.png "retrieval augmented generative search")
 
@@ -236,13 +236,13 @@ Sample output:
     }
 }
 ```
-13) Run the Gradio front end application example and visit
+6) Run the Gradio front end application example and visit
 the port reported with a web browser.
 ```bash
 python 05-gradio
 ```
 
-14) Use the [Weaviate Cloud Console](https://console.weaviate.cloud/) to make GraphQL queries.
+7) Use the [Weaviate Cloud Console](https://console.weaviate.cloud/) to make GraphQL queries.
 
 - Add an Openshift route for your external cluster.
 - Navigate to the query editor and configure the header.
@@ -359,7 +359,7 @@ Sample output:
 }
 ```
 
-14) Delete the schema if necessary.
+8) Delete the schema if necessary.
 
 ```bash
 python 04-delete-schema.py
