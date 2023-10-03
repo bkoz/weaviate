@@ -1,4 +1,0 @@
-weaviate-client
-python-dotenv
-requests
-gradio
