@@ -1,1 +1,1 @@
-APP_SCRIPT=app.py
+APP_SCRIPT='python app.py'
