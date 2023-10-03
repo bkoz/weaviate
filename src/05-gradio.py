@@ -26,7 +26,8 @@ def generative_search(concept: str, prompt: str) -> str:
     output = json.dumps(response, indent=4)
     result = response.get('data')['Get']['Question'][0]['_additional']['generate']['singleResult']
     return result
-gr.Interface(max_lines=20, fn=generative_search, inputs=["text", "text"], outputs="text",
+gr.Interface(max_lines=50, fn=generative_search, inputs=["text", "text"], outputs="text",
     examples=[["biology", "Explain {answer} as you might to a five-year-old."],
-              ["biology", "Explain {answer} as you might to a graduate student."]])\
-    .launch()
+              ["biology", "Explain {answer} as you might to a graduate student."],
+              ["biology", "Explain {answer} as lyrics for a rap tune. Limit the answer to a single verse and chorus."]])\
+    .queue().launch()
