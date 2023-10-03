@@ -26,11 +26,13 @@ class_obj = {
 #
 # Create the class if its not there
 #
-try:
-    logging.info(f'\nCreating a class using the text2vec-huggingface vectorizer.')
+
+if client.schema.exists('Question'):
+    logging.info("Question class already exists, skipping class creation.")
+else:
+    logging.info(f'\nCreating the Question class using the text2vec-huggingface vectorizer.')
     client.schema.create_class(class_obj)
-except weaviate.exceptions.UnexpectedStatusCodeException:
-    logging.info("Question class already exists, skipping")
+
 
 #
 # Load some questions.
