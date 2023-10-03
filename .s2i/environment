@@ -1,2 +1,3 @@
 
-APP_FILE=app.py
+APP_HOME=src
+APP_FILE=00-test-connection.py
