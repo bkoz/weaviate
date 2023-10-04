@@ -30,4 +30,4 @@ gr.Interface(max_lines=50, fn=generative_search, inputs=["text", "text"], output
     examples=[["biology", "Explain {answer} as you might to a five-year-old."],
               ["biology", "Explain {answer} as you might to a graduate student."],
               ["biology", "Explain {answer} as lyrics for a rap tune. Limit the answer to a single verse and chorus."]])\
-    .queue().launch()
+    .queue().launch(server_name='0.0.0.0', server_port=8080)
