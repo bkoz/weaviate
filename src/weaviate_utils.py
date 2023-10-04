@@ -75,6 +75,12 @@ def weaviate_connection() -> weaviate.Client:
     return client
 
 def import_questions(client: weaviate.Client) -> None:
+    """Create a schema and import a few Jeopardy questions.
+
+    Args:
+        client (weaviate.Client): A handle to a Weaviate connection
+        with established HuggingFace and OpenAI credentials.
+    """
     class_obj = {
     "class": "Question",
     "vectorizer": "text2vec-huggingface",
