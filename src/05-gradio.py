@@ -8,6 +8,8 @@ import gradio as gr
 client = weaviate_utils.weaviate_connection()
 logging.info(f'\nclient.is_ready() = {client.is_ready()}')
 
+weaviate_utils.import_questions(client)
+
 #
 # OpenAI query
 #
