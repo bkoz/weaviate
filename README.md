@@ -60,10 +60,11 @@ Sample output
 ```
 ## Sample Applications
 
-1) Create a python virtual environment and try a few of the [example clients](src). The python examples expect the `WEAVIATE_URL` and `WEAVIATE_API_KEY` variables to be set.
+1) Create a python virtual environment and try a few of the [example clients](src). The first two python examples expect the `WEAVIATE_URL` and `WEAVIATE_API_KEY` variables to be set.
 ```bash
-python -m venv venv
-source venv
+python -m venv ~/venv
+source ~/venv/bin/activate
+cd src
 pip install -r requirements.txt
 ```
 ```bash
@@ -88,7 +89,7 @@ cluster.get_nodes_status(): [{'batchStats': {'queueLength': 0, 'ratePerSecond': 
 
 3) Create a schema and import some objects.
 
-This example requires a [HuggingFace api token](https://huggingface.co/settings/tokens).
+This example requires a [HuggingFace api token](https://huggingface.co/settings/tokens) to create vectors.
 ```bash
 export HUGGINGFACE_API_KEY=your-huggingface-api-key
 ```
@@ -110,14 +111,7 @@ Creating a class using the text2vec-huggingface vectorizer.
 Question class already exists, skipping
 importing question: 1
 importing question: 2
-importing question: 3
-importing question: 4
-importing question: 5
-importing question: 6
-importing question: 7
-importing question: 8
-importing question: 9
-importing question: 10
+...
 ```
 
 4) Perform a semantic search.
