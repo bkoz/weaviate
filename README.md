@@ -10,26 +10,29 @@ Running [Weaviate](https://weaviate.io/) on Red Hat Openshift
 ### Installation
 1) Install the `oc` and `helm` programs on your client workstation.
 
-2) Login with `cluster-admin` privileges and create an openshift project
+2) Login to Openshift and create a project.
 
 ```bash
 PROJ=weaviate
 oc new-project ${PROJ}
 ```
 
-3) Begin by reviewing the [Weaviate Kubernetes Installation docs](https://weaviate.io/developers/weaviate/installation/kubernetes). As a quick start, configure the [example helm chart values](values.yaml) file in this repo.
-    - Set your desired api keys in the example `values.yaml` file. See lines 153 - 154.
-      - This example `values.yaml` enables the following:
+3) Begin by reviewing the [Weaviate Kubernetes Installation docs](https://weaviate.io/developers/weaviate/installation/kubernetes). As a quick start, use the [example helm chart values file](values.yaml)  in this repo.
+  - Configuration options
+    - Set your desired api keys by renaming the default values in the example `values.yaml` file. See lines 153 - 154.
+      - This example `values.yaml` enables the following sections:
         - `apikey`
         - `text2vec-huggingface`
         - `generative-openai`
-    - Add the weaviate repo to the helm configuration.
+
+4) Configure and run the helm installer and wait for the weaviate pod to become ready.
+
+- Add the weaviate repo to the helm configuration.
 
 ```bash
 helm repo add weaviate https://weaviate.github.io/weaviate-helm
 ```
-
-4) Run the helm installer and wait for the weaviate pod to become ready.
+- Install Weaviate
 ```bash
 helm upgrade --install "weaviate" weaviate/weaviate --namespace ${PROJ} --values ./values.yaml
 ```
@@ -154,42 +157,7 @@ Sample output:
         }
     }
 }
-{
-    "data": {
-        "Get": {
-            "Question": [
-                {
-                    "answer": "Elephant",
-                    "category": "ANIMALS",
-                    "question": "It's the only living mammal in the order Proboseidea"
-                },
-                {
-                    "answer": "the diamondback rattler",
-                    "category": "ANIMALS",
-                    "question": "Heaviest of all poisonous snakes is this North American rattlesnake"
-                }
-            ]
-        }
-    }
-}
-{
-    "data": {
-        "Get": {
-            "Question": [
-                {
-                    "answer": "Elephant",
-                    "category": "ANIMALS",
-                    "question": "It's the only living mammal in the order Proboseidea"
-                },
-                {
-                    "answer": "DNA",
-                    "category": "SCIENCE",
-                    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance"
-                }
-            ]
-        }
-    }
-}
+
 ```
 
 5) Perform a retrieval augmented generative search.
@@ -219,20 +187,7 @@ Sample output:
                     "answer": "Elephant",
                     "category": "ANIMALS",
                     "question": "It's the only living mammal in the order Proboseidea"
-                },
-                {
-                    "_additional": {
-                        "generate": {
-                            "error": null,
-                            "singleResult": "DNA is like a special code that tells our bodies how to grow and work. It's like a recipe book that has all the instructions for making you who you are. Just like a recipe book tells you how to make yummy cookies, DNA tells your body how to make your eyes, hair, and even how tall you will be. It's really amazing because it's what makes you unique and different from everyone else!"
-                        }
-                    },
-                    "answer": "DNA",
-                    "category": "SCIENCE",
-                    "question": "In 1953 Watson & Crick built a model of the molecular structure of this, the gene-carrying substance"
                 }
-            ]
-        }
     }
 }
 ```
