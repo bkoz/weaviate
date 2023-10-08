@@ -35,7 +35,7 @@ helm repo add weaviate https://weaviate.github.io/weaviate-helm
 ```
 - Install Weaviate
 ```bash
-helm upgrade --install "weaviate" weaviate/weaviate --namespace ${PROJ} --values ./values.yaml
+helm upgrade --install weaviate weaviate/weaviate --namespace ${PROJ} --values ./values.yaml
 ```
 
 5) Expose the Weaviate service as a route
