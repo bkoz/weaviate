@@ -20,7 +20,7 @@ oc new-project ${PROJ}
 3) Begin by reviewing the [Weaviate Kubernetes Installation docs](https://weaviate.io/developers/weaviate/installation/kubernetes). As a quick start, use the [example helm chart values file](values.yaml)  in this repo.
   - Configuration options
     - Set your desired api keys by renaming the default values in the example `values.yaml` file. See lines 153 - 154.
-    - If deploying in the [Developer Sandbox](https://developers.redhat.com/developer-sandbox) change the storage `size` to < 5Gi. See line 88.
+    - If deploying in the [Developer Sandbox](https://developers.redhat.com/developer-sandbox) change the storage `size` to `5Gi` or less. See line 88.
       - This example `values.yaml` enables the following sections:
         - `apikey`
         - `text2vec-huggingface`
