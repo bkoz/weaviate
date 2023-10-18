@@ -30,6 +30,6 @@ def generative_search(concept: str, prompt: str) -> str:
     return result
 gr.Interface(fn=generative_search, inputs=["text", "text"], outputs="text",
     examples=[["biology", "Explain {answer} as you might to a five-year-old."],
-              ["biology", "Explain {answer} as you might to a PhD student."],
+              ["biology", "Explain {answer} as you might to a PhD student. Limit the answer to two paragraphs."],
               ["biology", "Explain {answer} as lyrics for a rap tune. Limit the answer to a single verse and chorus."]])\
     .queue().launch(server_name='0.0.0.0', server_port=8080)
