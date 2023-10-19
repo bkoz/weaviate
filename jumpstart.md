@@ -10,7 +10,7 @@
 
 ### [Install Weaviate](README.md)
 
-### Developer Workflow
+### Developer Workflow with Eclipse-Che/DevSpaces
 - Launch the Eclipse-Che/DevSpaces dashboard.
 - Add a new workspace by cloning https://github.com/bkoz/weaviate
 - Install the VSCode python extension.
@@ -19,4 +19,34 @@
 - Test the weaviate service
 ```
 curl ${WEAVIATE_URL} | jq
+```
+- Run a few python test clients.
+- Optionally, create a github webhook to trigger Openshift builds.
+
+### Move the app into production
+```
+oc new-app python~https://github.com/bkoz/weaviate --context-dir=/src --name=rag
+```
+
+Create a test file containing the following environment variables.
+```
+WEAVIATE_URL=${WEAVIATE_URL}
+HUGGINGFACE_API_KEY=${HUGGINGFACE_API_KEY}
+OPENAI_API_KEY=${OPENAI_API_KEY}
+WEAVIATE_API_KEY=${WEAVIATE_API_KEY} 
+```
+
+Create a secret from this file.
+```
+oc create secret generic myenvs --from-env-file=/var/tmp/myenvs
+```
+
+Add the secret to the deployment
+```
+oc set env --from=secret/myenvs deployment/rag
+```
+
+Expose the app with a route.
+```
+oc create route edge --service rag --insecure-policy='Redirect'
 ```
