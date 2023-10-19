@@ -10,6 +10,15 @@
 
 ### [Install Weaviate](README.md)
 
+### Benefits of DevSpaces
+- A full IDE experience with a debugger.
+- Leverage many VSCode extensions.
+- Running as a pod makes network testing easier.
+- Port forwarding it easier to deploy and test your app.
+- GitHub integration improves workflow efficiency.
+- The price is right.
+
+### Install the Eclipse-Che/
 ### Developer Workflow with Eclipse-Che/DevSpaces
 - Launch the Eclipse-Che/DevSpaces dashboard.
 - Add a new workspace by cloning https://github.com/bkoz/weaviate
