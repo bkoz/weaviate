@@ -15,8 +15,8 @@
 - Add a new workspace by cloning https://github.com/bkoz/weaviate
 - Install the VSCode python extension.
 - Create a python virtual environment.
-- Open a terminal
-- Test the weaviate service
+- Open a terminal.
+- Test the weaviate service.
 ```
 curl ${WEAVIATE_URL} | jq
 ```
