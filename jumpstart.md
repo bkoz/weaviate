@@ -16,6 +16,7 @@
 - Running as a pod makes network testing easier.
 - Deploy and test your app with port forwarding.
 - GitHub integration improves workflow efficiency.
+- Environment variables are read in as secrets.
 - The price is right.
 
 ### Install the Eclipse-Che/
