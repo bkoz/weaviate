@@ -31,9 +31,9 @@ oc new-app python~https://github.com/bkoz/weaviate --context-dir=/src --name=rag
 Create a test file containing the following environment variables.
 ```
 WEAVIATE_URL=${WEAVIATE_URL}
+WEAVIATE_API_KEY=${WEAVIATE_API_KEY} 
 HUGGINGFACE_API_KEY=${HUGGINGFACE_API_KEY}
 OPENAI_API_KEY=${OPENAI_API_KEY}
-WEAVIATE_API_KEY=${WEAVIATE_API_KEY} 
 ```
 
 Create a secret from this file.
