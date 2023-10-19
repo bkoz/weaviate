@@ -14,7 +14,7 @@
 - A full IDE experience with a debugger.
 - Leverage many VSCode extensions.
 - Running as a pod makes network testing easier.
-- Port forwarding it easier to deploy and test your app.
+- Deploy and test your app with port forwarding.
 - GitHub integration improves workflow efficiency.
 - The price is right.
 
