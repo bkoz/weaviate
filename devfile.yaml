@@ -12,7 +12,7 @@ components:
   - name: tools
     container:
       # image: quay.io/devfile/universal-developer-image:ubi8-latest
-      image: image: quay.io/bkozdemb/udi-9
+      image: quay.io/bkozdemb/udi-9
       volumeMounts:
         - name: venv
           path: /home/user/.venv
