@@ -39,21 +39,23 @@ curl weaviate.your-dev-namespace | jq
 - Optionally, create a github webhook to trigger Openshift builds.
 
 ### Move the app into production.
-Create a project using your initials.
+Create a project using your initials. The Developer Sandbox won't let you create new projects so you can skip this step and just use the namespace that you are given.
+
 ```
 PROJ=bk-apps
 oc new-project $PROJ
 ```
+
 Create the application.
 ```
 oc new-app python~https://github.com/bkoz/weaviate --context-dir=/src --name=rag
 ```
 
-Edit the plain text `resources/env-vars.txt` file to reflect your environment.
+Make a copy of the plain text `resources/env-vars.txt` file to a temporary directory (`/var/tmp`). Edit it to reflect your environment.
 
 Create a secret from this file.
 ```
-oc create secret generic myenvs --from-env-file=resources/env-vars.txt
+oc create secret generic myenvs --from-env-file=/var/tmp/env-vars.txt
 ```
 
 Add the secret to the deployment
