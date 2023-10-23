@@ -7,38 +7,33 @@
 
 ### What's needed:
 - Access to an Openshift developer account.
-- A Weaviate service
-- A HuggingFace API key
-- An OpenAI API key
+- A Weaviate service.
+- A HuggingFace API key.
+- An OpenAI API key.
 
 ### Get access to Openshift
 - The easiest path is to signup for a [Developer Sandbox](https://developers.redhat.com/developer-sandbox)
-- Or create a mini-cluster by [installing Code Ready Containers](https://www.okd.io/crc/)
-- Or create a community cluster by [installing OKD](https://www.okd.io/installation/) and the [Eclipse-Che] operator.
-- Or create an [Openshift](https://www.redhat.com/en/technologies/cloud-computing/openshift) cluster and the [DevSpaces] operator.
 
-### [Install Weaviate](install-weaviate.md)
+### [Install Weaviate](install-weaviate.md) on Openshift
 
 ### Benefits of Eclipse-Che/DevSpaces
 - A full IDE experience with a code debugger.
 - Leverage many VSCode extensions.
-- Running as a pod makes network testing easier.
+- It runs as a pod making network testing easier.
 - Deploy and test your app with port forwarding.
 - GitHub integration improves workflow efficiency.
 - Environment variables are read in as secrets.
 - The price is right.
 
-### Install the Eclipse-Che
-
 #### Developer Workflow with Eclipse-Che/DevSpaces
-- Launch the Eclipse-Che/DevSpaces dashboard.
+- Login to Openshift and launch the Eclipse-Che/DevSpaces dashboard.
 - Add a new workspace by cloning https://github.com/bkoz/weaviate
-- Install the VSCode python extension.
-- Create a python virtual environment.
-- Open a terminal.
+- Install the reccomended VSCode python extension.
+- Create a python virtual environment. (View -> Command Pallette -> Run Task -> devfile)
+- Open a terminal within VSCode.
 - Test the weaviate service.
 ```
-curl ${WEAVIATE_URL} | jq
+curl weaviate.your-dev-namespace | jq
 ```
 - Run a few python test clients from the `src` directory.
 - Optionally, create a github webhook to trigger Openshift builds.
@@ -54,7 +49,7 @@ oc new-app python~https://github.com/bkoz/weaviate --context-dir=/src --name=rag
 ```
 
 Edit the plain text `resources/env-vars.txt` file to reflect your environment.
-```
+
 Create a secret from this file.
 ```
 oc create secret generic myenvs --from-env-file=resources/env-vars.txt
@@ -69,3 +64,7 @@ Expose the app with a route.
 ```
 oc create route edge --service rag --insecure-policy='Redirect'
 ```
+### Addtional ways to get access to Openshift.
+- Create a mini-cluster by [installing Code Ready Containers](https://www.okd.io/crc/)
+- Install an [OKD cluster](https://www.okd.io/installation/) and Eclipse-Che.
+- Install an [Openshift](https://www.redhat.com/en/technologies/cloud-computing/openshift) cluster and DevSpaces.
