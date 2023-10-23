@@ -80,12 +80,16 @@ export WEAVIATE_API_KEY='weaviate-api-key-from-values-file-above'
 ```bash
 python 00-test-connection.py 
 ```
+A shard should be reported for each Weaviate node.
 
 Sample output:
 ```bash
-WEAVIATE_URL https://weaviate.apps.openshift.com is_ready() = True
-
-cluster.get_nodes_status(): [{'batchStats': {'queueLength': 0, 'ratePerSecond': 0}, 'gitHash': '8172acb', 'name': 'weaviate-0', 'shards': [{'class': 'Article', 'name': '7dLd8SoAYAEx', 'objectCount': 100}, {'class': 'Author', 'name': 'HaNbOTa3gorn', 'objectCount': 128}, {'class': 'Question', 'name': 's592CBYYm2N4', 'objectCount': 10}], 'stats': {'objectCount': 538, 'shardCount': 4}, 'status': 'HEALTHY', 'version': '1.21.0'}]
+INFO:root:{'batchStats': {'queueLength': 0, 'ratePerSecond': 0}, 'gitHash': '8172acb', 'name': 'weaviate-0', 'shards': None, 'stats': {'objectCount': 0, 'shardCount': 0}, 'status': 'HEALTHY', 'version': '1.21.0'}
+INFO:root:
+INFO:root:{'batchStats': {'queueLength': 0, 'ratePerSecond': 0}, 'gitHash': '8172acb', 'name': 'weaviate-1', 'shards': None, 'stats': {'objectCount': 0, 'shardCount': 0}, 'status': 'HEALTHY', 'version': '1.21.0'}
+INFO:root:
+INFO:root:{'batchStats': {'queueLength': 0, 'ratePerSecond': 0}, 'gitHash': '8172acb', 'name': 'weaviate-2', 'shards': None, 'stats': {'objectCount': 0, 'shardCount': 0}, 'status': 'HEALTHY', 'version': '1.21.0'}
+INFO:root:
 ```
 
 3) Create a schema and import some objects.

@@ -39,9 +39,10 @@ curl weaviate.your-dev-namespace | jq
 - Optionally, create a github webhook to trigger Openshift builds.
 
 ### Move the app into production.
-Create a project.
+Create a project using your initials.
 ```
-oc new-project apps
+PROJ=bk-apps
+oc new-project $PROJ
 ```
 Create the application.
 ```
