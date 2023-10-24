@@ -13,9 +13,8 @@
 
 ### Weaviate On Openshift
 - Support for [Distributed Architectures](https://weaviate.io/developers/weaviate/concepts/replication-architecture).
-- A Great Developer Experience
-- Security (don't run your containers as root)
-- Battle Tested
+- A Great Developer Experience (Easily move code -> containers)
+- Security (Doesn't run your containers as root)
 
 ### Get access to Openshift
 - The easiest path is to signup for a [Developer Sandbox](https://developers.redhat.com/developer-sandbox)
