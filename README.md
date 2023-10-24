@@ -12,7 +12,7 @@
 - An OpenAI API key.
 
 ### Weaviate On Openshift
-- Support for [Replication and Distributed Architectures](https://weaviate.io/developers/weaviate/concepts/replication-architecture).
+- Support for [Distributed Architectures](https://weaviate.io/developers/weaviate/concepts/replication-architecture).
 - A Great Developer Experience
 - Security (don't run your containers as root)
 - Battle Tested
