@@ -11,6 +11,11 @@
 - A HuggingFace API key.
 - An OpenAI API key.
 
+### Why Openshift?
+- A Great Developer Experience
+- Better Security (don't run your containers as root)
+- Battle Tested
+
 ### Get access to Openshift
 - The easiest path is to signup for a [Developer Sandbox](https://developers.redhat.com/developer-sandbox)
 
