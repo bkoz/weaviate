@@ -16,10 +16,10 @@
 
 ### [Install Weaviate](install-weaviate.md) on Openshift
 
-### Benefits of Eclipse-Che/DevSpaces
+### Developer Tools: Eclipse-Che/DevSpaces
 - A full IDE experience with a code debugger.
 - Leverage many VSCode extensions.
-- It runs as a pod making network testing easier.
+- Runs as a pod making for easier service discovery.
 - Deploy and test your app with port forwarding.
 - GitHub integration improves workflow efficiency.
 - Environment variables are read in as secrets.
@@ -32,42 +32,38 @@
 - Create a python virtual environment. (View -> Command Pallette -> Run Task -> devfile)
 - Open a terminal within VSCode.
 - Test the weaviate service.
-```
+```bash
 curl weaviate.your-dev-namespace | jq
 ```
 - Run a few python test clients from the `src` directory.
 - Optionally, create a github webhook to trigger Openshift builds.
 
 ### Move the app into production.
-Create a project using your initials. The Developer Sandbox won't let you create new projects so you can skip this step and just use the namespace that you are given.
-
-```
+Create a project using your initials. The Developer Sandbox won't let you create new projects so you can 
+skip this step and just use the namespace that you are given.
+```bash
 PROJ=bk-apps
 oc new-project $PROJ
 ```
-
 Create the application.
-```
+```bash
 oc new-app python~https://github.com/bkoz/weaviate --context-dir=/src --name=rag
 ```
-
 Make a copy of the plain text `resources/env-vars.txt` file to a temporary directory (`/var/tmp`). Edit it to reflect your environment.
 
 Create a secret from this file.
-```
+```bash
 oc create secret generic myenvs --from-env-file=/var/tmp/env-vars.txt
 ```
-
 Add the secret to the deployment
-```
+```bash
 oc set env --from=secret/myenvs deployment/rag
 ```
-
 Expose the app with a route.
-```
+```bash
 oc create route edge --service rag --insecure-policy='Redirect'
 ```
-### Addtional ways to get access to Openshift.
+### Additional ways to get access to Openshift.
 - Create a mini-cluster by [installing Code Ready Containers](https://www.okd.io/crc/)
 - Install an [OKD cluster](https://www.okd.io/installation/) and Eclipse-Che.
 - Install an [Openshift](https://www.redhat.com/en/technologies/cloud-computing/openshift) cluster and DevSpaces.
