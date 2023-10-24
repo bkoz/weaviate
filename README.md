@@ -72,3 +72,4 @@ oc create route edge --service rag --insecure-policy='Redirect'
 - Create a mini-cluster by [installing Code Ready Containers](https://www.okd.io/crc/)
 - Install an [OKD cluster](https://www.okd.io/installation/) and Eclipse-Che.
 - Install an [Openshift](https://www.redhat.com/en/technologies/cloud-computing/openshift) cluster and DevSpaces.
+- As a managed service from any of the major cloud providers.
