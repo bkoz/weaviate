@@ -11,9 +11,10 @@
 - A HuggingFace API key.
 - An OpenAI API key.
 
-### Why Openshift?
+### Weaviate On Openshift
+- Support for [Replication and Distributed Architectures](https://weaviate.io/developers/weaviate/concepts/replication-architecture).
 - A Great Developer Experience
-- Better Security (don't run your containers as root)
+- Security (don't run your containers as root)
 - Battle Tested
 
 ### Get access to Openshift
