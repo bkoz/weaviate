@@ -8,9 +8,9 @@ metadata:
   annotations:
     controller.devfile.io/mount-as: env
 data:
-  HUGGINGFACE_API_KEY: Cg==
-  OPENAI_API_KEY: Cg==
-  WEAVIATE_API_KEY: Cg==
-  WEAVIATE_URL: Cg==
+  HUGGINGFACE_API_KEY:
+  OPENAI_API_KEY:
+  WEAVIATE_API_KEY:
+  WEAVIATE_URL:
 type: Opaque
 
