@@ -1,9 +1,9 @@
 apiVersion: v1
 data:
-  HUGGINGFACE_API_KEY: None
-  OPENAI_API_KEY: None
-  WEAVIATE_API_KEY: None
-  WEAVIATE_URL: None
+  HUGGINGFACE_API_KEY: Tm9uZQo=
+  OPENAI_API_KEY: Tm9uZQo=
+  WEAVIATE_API_KEY: Tm9uZQo=
+  WEAVIATE_URL: Tm9uZQo=
 kind: Secret
 metadata:
   name: app-env
