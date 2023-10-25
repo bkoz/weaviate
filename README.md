@@ -1,4 +1,4 @@
-# JumpStart your [Vector Database](https://weaviate.io/) to enterprise scale with [OKD](httos://okd.io)
+# JumpStart your [Vector Database](https://weaviate.io/) to enterprise scale with [Openshift OKD](httos://okd.io)
 
 ## Agenda
 
