@@ -60,9 +60,10 @@ Create a secret from this file.
 ```bash
 oc create secret generic myenvs --from-env-file=/var/tmp/env-vars.txt
 ```
-Add the secret to the deployment
+Add the secret to the deployment then remove the temporary file.
 ```bash
 oc set env --from=secret/myenvs deployment/rag
+rm /var/tmp/env-vars.txt
 ```
 Expose the app with a route.
 ```bash
