@@ -31,22 +31,17 @@
 - The price is right.
 
 #### Demo: Developer Workflow with Eclipse-Che/DevSpaces
-- Login to Openshift and launch the Eclipse-Che/DevSpaces dashboard.
-- Add a new workspace by cloning https://github.com/bkoz/weaviate
+- Login to Openshift and launch the Eclipse-Che dashboard.
+- Create and save a new secret (from yaml) for the application environment variables using the example at `resources/che-env.yaml`.
+  - From the 'Edit' menu, change the values in the secret to match your environment. Make sure there are no no newline characters in the values.
+- From the Eclipse-Che dashboard, add a new workspace by cloning https://github.com/bkoz/weaviate
 - Open a terminal within VSCode. (ctl-`)
-- Create a secret for the application environment variables from the example. If you navigate to the Che dashboard tab, you will notice the workspace will restart after the secret is created.
-```bash
-oc apply -f resources/che-env.yaml
-```
-```
-secret/app-env created
-```
-- Use the Openshift web console UI to edit the values in the secret to reflect your environment. Make sure there are noticenewline control characters in the values.
+- Use the Openshift web console UI to edit the values in the secret to reflect your environment. Make sure there are no newline control characters in the values.
 - Install the reccomended VSCode python extension.
 - Create a python virtual environment. (View -> Command Pallette -> Run Task -> devfile)
 - Test the weaviate service.
 ```bash
-curl weaviate.your-dev-namespace | jq
+curl ${WEAVIATE_URL} | jq
 ```
 - Run a few python test clients from the `src` directory.
 - Optionally, create a github webhook to trigger Openshift builds.
@@ -62,13 +57,11 @@ Create the application.
 ```bash
 oc new-app python~https://github.com/bkoz/weaviate --context-dir=/src --name=rag
 ```
-Make a copy of the plain text `resources/env-vars.txt` file to a temporary directory (`/var/tmp`). Edit it to reflect your environment.
-
 Create a secret for the application environment variables from the example.
 ```bash
 oc apply -f resources/app-env.yaml
 ```
-Use the web console UI to edit the values in the secret to reflect your environment.
+Use the web console UI or CLI to edit the values in the secret to reflect your environment.
 
 Add the secret to the rag deployment.
 ```bash
