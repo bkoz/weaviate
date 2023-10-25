@@ -30,17 +30,20 @@
 - Environment variables are read in as secrets.
 - The price is right.
 
-#### Developer Workflow with Eclipse-Che/DevSpaces
+#### Demo: Developer Workflow with Eclipse-Che/DevSpaces
 - Login to Openshift and launch the Eclipse-Che/DevSpaces dashboard.
 - Add a new workspace by cloning https://github.com/bkoz/weaviate
-- Create a secret for the application environment variables from the example. Your workspace will restart after this step.
+- Open a terminal within VSCode. (ctl-`)
+- Create a secret for the application environment variables from the example. If you navigate to the Che dashboard tab, you will notice the workspace will restart after the secret is created.
 ```bash
-oc apply -f resources/app-env.yaml
+oc apply -f resources/che-env.yaml
 ```
-- Use the web console UI to edit the values in the secret to reflect your environment.
+```
+secret/app-env created
+```
+- Use the Openshift web console UI to edit the values in the secret to reflect your environment.
 - Install the reccomended VSCode python extension.
 - Create a python virtual environment. (View -> Command Pallette -> Run Task -> devfile)
-- Open a terminal within VSCode.
 - Test the weaviate service.
 ```bash
 curl weaviate.your-dev-namespace | jq
