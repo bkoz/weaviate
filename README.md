@@ -41,7 +41,7 @@ oc apply -f resources/che-env.yaml
 ```
 secret/app-env created
 ```
-- Use the Openshift web console UI to edit the values in the secret to reflect your environment.
+- Use the Openshift web console UI to edit the values in the secret to reflect your environment. Make sure there are noticenewline control characters in the values.
 - Install the reccomended VSCode python extension.
 - Create a python virtual environment. (View -> Command Pallette -> Run Task -> devfile)
 - Test the weaviate service.
