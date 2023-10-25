@@ -33,6 +33,11 @@
 #### Developer Workflow with Eclipse-Che/DevSpaces
 - Login to Openshift and launch the Eclipse-Che/DevSpaces dashboard.
 - Add a new workspace by cloning https://github.com/bkoz/weaviate
+- Create a secret for the application environment variables from the example. Your workspace will restart after this step.
+```bash
+oc apply -f resources/app-env.yaml
+```
+- Use the web console UI to edit the values in the secret to reflect your environment.
 - Install the reccomended VSCode python extension.
 - Create a python virtual environment. (View -> Command Pallette -> Run Task -> devfile)
 - Open a terminal within VSCode.
@@ -56,14 +61,15 @@ oc new-app python~https://github.com/bkoz/weaviate --context-dir=/src --name=rag
 ```
 Make a copy of the plain text `resources/env-vars.txt` file to a temporary directory (`/var/tmp`). Edit it to reflect your environment.
 
-Create a secret from this file.
+Create a secret for the application environment variables from the example.
 ```bash
-oc create secret generic myenvs --from-env-file=/var/tmp/env-vars.txt
+oc apply -f resources/app-env.yaml
 ```
-Add the secret to the deployment then remove the temporary file.
+Use the web console UI to edit the values in the secret to reflect your environment.
+
+Add the secret to the rag deployment.
 ```bash
-oc set env --from=secret/myenvs deployment/rag
-rm /var/tmp/env-vars.txt
+oc set env --from=secret/app-env deployment/rag
 ```
 Expose the app with a route.
 ```bash
