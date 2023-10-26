@@ -24,7 +24,7 @@
 ### Developer Tools: Eclipse-Che/DevSpaces
 - A full IDE experience with a code debugger.
 - Leverage many VSCode extensions.
-- Runs as a pod making for easier service discovery.
+- In cluster terminal with CLI access to the Openshift API.
 - Deploy and test your app with port forwarding.
 - GitHub integration improves workflow efficiency.
 - Environment variables are read in as secrets.
