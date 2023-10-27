@@ -37,7 +37,7 @@
 - Using the Openshift web console developer view, create and save a new secret (from yaml) using the example at `resources/che-env.yaml`.
   - From the 'Edit' menu, change the values in the secret to match your environment. Make sure there are no newline characters in the values.
 - From the Eclipse-Che dashboard, add a new workspace by cloning https://github.com/bkoz/weaviate
-- Open a terminal within VSCode. (ctl-`)
+- Open a terminal within VSCode. (ctl `)
 - Use the Openshift web console UI to edit the values in the secret to reflect your environment. Make sure there are no newline control characters in the values.
 - Install the reccomended VSCode python extension.
 - Create a python virtual environment. (View -> Command Pallette -> Run Task -> devfile)
