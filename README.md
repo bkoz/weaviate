@@ -14,6 +14,7 @@
 ### Weaviate On Openshift
 - Support for [Distributed Architectures](https://weaviate.io/developers/weaviate/concepts/replication-architecture).
 - A Great Developer Experience (Easily move code -> containers)
+- Access your cluster via the Weaviate Cloud Console with external routes.
 - Security (Doesn't run your containers as root)
 
 ### Get access to Openshift
