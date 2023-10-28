@@ -212,18 +212,22 @@ python 05-gradio
   Get {
     Question (
       nearText: {
-        concepts: ["biology"],
-        distance: 0.6 
-        moveAwayFrom: {
-          concepts: ["technology"],
-          force: 0.45
-        }
+        concepts: ["World history"]
       }
-    ){
-      answer
+      limit: 2
+    ) {
+      question
       _additional {
-        certainty # only supported if distance==cosine.
-        distance  # always supported
+        generate(
+          singleResult: {
+            prompt: """
+              Convert the following into a question for twitter. Include emojis for fun, but do not include the answer: {question}.
+            """
+          }
+        ) {
+          singleResult
+          error
+        }
       }
     }
   }
@@ -238,73 +242,21 @@ Sample output:
       "Question": [
         {
           "_additional": {
-            "certainty": 0.9416711330413818,
-            "distance": 0.116657734
+            "generate": {
+              "error": null,
+              "singleResult": "🌦️ What causes weather? 🌍✨"
+            }
           },
-          "answer": "Elephant"
+          "question": "Changes in the tropospheric layer of this are what gives us weather"
         },
         {
           "_additional": {
-            "certainty": 0.9404493570327759,
-            "distance": 0.119101286
+            "generate": {
+              "error": null,
+              "singleResult": "🌦️ What causes weather changes in the tropospheric layer? #WeatherWonders"
+            }
           },
-          "answer": "Liver"
-        },
-        {
-          "_additional": {
-            "certainty": 0.9401318430900574,
-            "distance": 0.119736314
-          },
-          "answer": "DNA"
-        },
-        {
-          "_additional": {
-            "certainty": 0.9372586607933044,
-            "distance": 0.12548268
-          },
-          "answer": "the atmosphere"
-        },
-        {
-          "_additional": {
-            "certainty": 0.9305243492126465,
-            "distance": 0.1389513
-          },
-          "answer": "species"
-        },
-        {
-          "_additional": {
-            "certainty": 0.9297976493835449,
-            "distance": 0.1404047
-          },
-          "answer": "the nose or snout"
-        },
-        {
-          "_additional": {
-            "certainty": 0.9294309914112091,
-            "distance": 0.14113802
-          },
-          "answer": "the diamondback rattler"
-        },
-        {
-          "_additional": {
-            "certainty": 0.9264078438282013,
-            "distance": 0.14718431
-          },
-          "answer": "Sound barrier"
-        },
-        {
-          "_additional": {
-            "certainty": 0.9256481826305389,
-            "distance": 0.14870363
-          },
-          "answer": "Antelope"
-        },
-        {
-          "_additional": {
-            "certainty": 0.9158381223678589,
-            "distance": 0.16832376
-          },
-          "answer": "wire"
+          "question": "Changes in the tropospheric layer of this are what gives us weather"
         }
       ]
     }
