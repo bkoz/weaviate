@@ -32,17 +32,17 @@
 - The price is right.
 
 #### Setup: Developer Workflow with Eclipse-Che/DevSpaces
-1) Set Enviroment variables
-  a) **View -> Command Palette** -> and enter: `dev spaces: open openshift console`.
-  b) **Secrets -> create** and **save** a new secret (from yaml) using this [example](resources/che-env.yaml).
-  c) **Edit ->** change the values in the secret to match your environment. Your instructor will provide the values.
-2) **Extensions** -> Install the reccomended **python extension**.
-3) **View -> Command Pallette** and enter: `run task` -> devfile -> Create a python virtual environment
-4) **Terminal -> New Terminal**
+1. Set Enviroment variables
+2. **View -> Command Palette** -> and enter: `dev spaces: open openshift console`.
+   * **Secrets -> create** and **save** a new secret (from yaml) using this [example](resources/che-env.yaml).
+   * **Edit ->** change the values in the secret to match your environment. Your instructor will provide the values.
+3. **Extensions** -> Install the reccomended **python extension**.
+4. **View -> Command Pallette** and enter: `run task` -> devfile -> Create a python virtual environment
+5. **Terminal -> New Terminal**
 ```bash
 curl ${WEAVIATE_URL} | jq
 ```
-5) Run a few python test clients from the `src` directory.
+6. Run a few python test clients from the `src` directory.
 
 ### Move the app into production.
 Create a project using your initials. The Developer Sandbox won't let you create new projects so you can 
