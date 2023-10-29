@@ -32,17 +32,16 @@
 - The price is right.
 
 #### Setup: Developer Workflow with Eclipse-Che/DevSpaces
-1) Set **Enviroment variables**
+1) Set Enviroment variables
   - **View -> Command Palette** -> and enter: `dev spaces: open openshift console`.
   - **Secrets -> create** and **save** a new secret (from yaml) using this [example](resources/che-env.yaml).
   - **Edit ->** change the values in the secret to match your environment. Your instructor will provide the values.
 2) Install the reccomended VSCode **python extension**.
 3) **View -> Command Pallette** and enter: `run task` -> devfile -> Create a python virtual environment
 4) **Terminal -> New Terminal**
-  - Test the weaviate service.
-  ```bash
-  curl ${WEAVIATE_URL} | jq
-  ```
+```bash
+curl ${WEAVIATE_URL} | jq
+```
 5) Run a few python test clients from the `src` directory.
 
 ### Move the app into production.
