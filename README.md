@@ -36,7 +36,7 @@
   - **View -> Command Palette** -> and enter: `dev spaces: open openshift console`.
   - **Secrets -> create** and **save** a new secret (from yaml) using this [example](resources/che-env.yaml).
   - **Edit ->** change the values in the secret to match your environment. Your instructor will provide the values.
-2) Install the reccomended VSCode **python extension**.
+2) **Extensions** -> Install the reccomended **python extension**.
 3) **View -> Command Pallette** and enter: `run task` -> devfile -> Create a python virtual environment
 4) **Terminal -> New Terminal**
 ```bash
