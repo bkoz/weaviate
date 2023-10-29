@@ -47,7 +47,7 @@ helm repo add weaviate https://weaviate.github.io/weaviate-helm
 helm upgrade --install weaviate weaviate/weaviate --namespace ${PROJ} --values ./values.yaml
 ```
 ```bash
-oc get pods
+oc get pods -w
 ```
 ```bash
 curl weaviate.${PROJ} | jq
