@@ -6,20 +6,19 @@
 ![rag-demo](images/retrieval-augmented-generation.jpg "retrieval augmented generative search")
 
 ### What's needed:
-- Access to an Openshift developer account.
-- A Weaviate service.
-- A HuggingFace API key.
-- An OpenAI API key.
+- Access to a free [Openshift Developer Sandbox](https://developers.redhat.com/developer-sandbox).
+- A Weaviate vector database service.
+- A [HuggingFace API key](https://huggingface.co/settings/tokens).
+- An [OpenAI API key](https://platform.openai.com/account/api-keys).
 
-### Weaviate On Openshift
+### Why run Weaviate On Openshift
 - Support for [Distributed Architectures](https://weaviate.io/developers/weaviate/concepts/replication-architecture).
 - A Great Developer Experience (Easily move code -> containers)
 - Access your cluster via the Weaviate Cloud Console with external routes.
 - Security (Doesn't run your containers as root)
 
-### Get access to Openshift
-- [Open this repo in DevSpaces](https://workspaces.openshift.com/f?url=https://github.com/bkoz/weaviate)
-- The easiest path is to signup for a [Developer Sandbox](https://developers.redhat.com/developer-sandbox)
+### Get Started
+- [Open this repo in the Developer Sandbox](https://workspaces.openshift.com/f?url=https://github.com/bkoz/weaviate)
 
 ### [Install Weaviate](install-weaviate.md) on Openshift
 
