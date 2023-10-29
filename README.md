@@ -82,6 +82,12 @@ oc set env --from=secret/app-env deployment/rag
 oc create route edge --service rag --insecure-policy='Redirect'
 ```
 
+### Clean up
+```bash
+oc delete all --selector=app=rag
+helm uninstall weaviate
+```
+
 ### Additional ways to get access to Openshift.
 - Create a mini-cluster by [installing Code Ready Containers](https://www.okd.io/crc/)
 - Install an [OKD cluster](https://www.okd.io/installation/) and Eclipse-Che.

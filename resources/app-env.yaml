@@ -7,4 +7,6 @@ data:
 kind: Secret
 metadata:
   name: app-env
+  labels:
+    app: rag
 type: Opaque
