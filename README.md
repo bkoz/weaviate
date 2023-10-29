@@ -31,8 +31,7 @@
 - Environment variables are read in as secrets.
 - The price is right.
 
-#### Setup: Developer Workflow with Eclipse-Che/DevSpaces
-1. Set Enviroment variables
+#### Setup: Enviroment variables and Extensions 
 2. **View -> Command Palette** -> and enter: `dev spaces: open openshift console`.
    * **Secrets -> create** and **save** a new secret (from yaml) using this [example](resources/che-env.yaml).
    * **Edit ->** change the values in the secret to match your environment. Your instructor will provide the values.
