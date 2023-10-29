@@ -34,13 +34,31 @@
    * **Secrets -> Create** and **Save** a new secret (from yaml) using this [example](resources/che-env.yaml).
    * **Edit ->** Change the values in the secret to match your environment. Your instructor will provide the values.
 4. **Extensions** -> Install the reccomended Python extension.
-5. **View -> Command Pallette** Enter: `run task` -> devfile -> Create a python virtual environment
+5. **View -> Command Pallette** Enter: `run task` -> devfile -> Create the python virtual environment
 6. **Terminal -> New Terminal**
-   * [Install Weaviate](install-weaviate.md)
+7. Use the helm client to install Weaviate and wait for the 2 weaviate pods to become ready.
 ```bash
-curl ${WEAVIATE_URL} | jq
+PROJ=$(oc project -q)
+```
+```bash
+helm repo add weaviate https://weaviate.github.io/weaviate-helm
+```
+```bash
+helm upgrade --install weaviate weaviate/weaviate --namespace ${PROJ} --values ./values.yaml
+```
+```bash
+oc get pods
+```
+```bash
+curl weaviate.${PROJ} | jq
 ```
 5. Run a few python test clients from the `src` directory.
+```bash
+python src/00-test-connection.py
+```
+```bash
+python src/03-gradio.py
+```
 
 ### Move the app into production.
 1. From the terminal, create an Openshift application.
