@@ -31,43 +31,40 @@
 - Environment variables are read in as secrets.
 - The price is right.
 
-#### Setup: Enviroment variables and Extensions 
-2. **View -> Command Palette** -> and enter: `dev spaces: open openshift console`.
-   * **Secrets -> create** and **save** a new secret (from yaml) using this [example](resources/che-env.yaml).
-   * **Edit ->** change the values in the secret to match your environment. Your instructor will provide the values.
-3. **Extensions** -> Install the reccomended **python extension**.
-4. **View -> Command Pallette** and enter: `run task` -> devfile -> Create a python virtual environment
-5. **Terminal -> New Terminal**
+#### Setup: 
+1. **View -> Command Palette** -> Enter: `dev spaces: open openshift console`.
+   * **Secrets -> Create** and **Save** a new secret (from yaml) using this [example](resources/che-env.yaml).
+   * **Edit ->** Change the values in the secret to match your environment. Your instructor will provide the values.
+2. **Extensions** -> Install the reccomended Python extension.
+3. **View -> Command Pallette** Enter: `run task` -> devfile -> Create a python virtual environment
+4. **Terminal -> New Terminal**
 ```bash
 curl ${WEAVIATE_URL} | jq
 ```
-6. Run a few python test clients from the `src` directory.
+5. Run a few python test clients from the `src` directory.
 
 ### Move the app into production.
-Create a project using your initials. The Developer Sandbox won't let you create new projects so you can 
-skip this step and just use the namespace that you are given.
-```bash
-PROJ=bk-apps
-oc new-project $PROJ
-```
-Create the application.
+1. From the terminal, create an Openshift application.
 ```bash
 oc new-app python~https://github.com/bkoz/weaviate --context-dir=/src --name=rag
 ```
-Create a secret for the application environment variables from the example.
+
+2. Create a secret for the application environment variables from the example.
 ```bash
 oc apply -f resources/app-env.yaml
 ```
-Use the web console UI or CLI to edit the values in the secret to reflect your environment.
+  * Use the web console UI or CLI to edit the values in the secret to reflect your environment.
 
-Add the secret to the rag deployment.
+3. Add the secret to the rag deployment.
 ```bash
 oc set env --from=secret/app-env deployment/rag
 ```
-Expose the app with a route.
+
+4. Expose the app with a route.
 ```bash
 oc create route edge --service rag --insecure-policy='Redirect'
 ```
+
 ### Additional ways to get access to Openshift.
 - Create a mini-cluster by [installing Code Ready Containers](https://www.okd.io/crc/)
 - Install an [OKD cluster](https://www.okd.io/installation/) and Eclipse-Che.
