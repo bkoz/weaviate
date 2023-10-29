@@ -28,7 +28,7 @@
 - Environment variables are read in as secrets.
 - DevSpaces is a no-cost add-on to Openshift
 
-#### Setup: 
+#### Setup for development: 
 1. **View -> Command Palette** -> Enter: `dev spaces: open openshift console`.
 3. Create a secret with environment variables.
    * **Secrets -> Create** and **Save** a new secret (from yaml) using this [example](resources/che-env.yaml).
@@ -36,7 +36,7 @@
 4. **Extensions** -> Install the reccomended Python extension.
 5. **View -> Command Pallette** Enter: `run task` -> devfile -> Create the python virtual environment
 6. **Terminal -> New Terminal**
-7. Use the helm client to install Weaviate and wait for the 2 weaviate pods to become ready.
+7. Use the helm client to **install Weaviate** and wait for the 2 weaviate pods to become ready.
 ```bash
 PROJ=$(oc project -q)
 ```
