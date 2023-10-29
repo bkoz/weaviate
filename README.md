@@ -7,7 +7,6 @@
 
 ### What's needed:
 - Access to a free [Openshift Developer Sandbox](https://developers.redhat.com/developer-sandbox).
-- A Weaviate vector database service.
 - A [HuggingFace API key](https://huggingface.co/settings/tokens).
 - An [OpenAI API key](https://platform.openai.com/account/api-keys).
 
@@ -20,8 +19,6 @@
 ### Get Started
 - [Open this repo in the Developer Sandbox](https://workspaces.openshift.com/f?url=https://github.com/bkoz/weaviate)
 
-### [Install Weaviate](install-weaviate.md) on Openshift
-
 ### Developer Tools: Eclipse-Che/DevSpaces
 - A full IDE experience with a code debugger.
 - Leverage many VSCode extensions.
@@ -29,15 +26,17 @@
 - Deploy and test your app with port forwarding.
 - GitHub integration improves workflow efficiency.
 - Environment variables are read in as secrets.
-- The price is right.
+- DevSpaces is a no-cost add-on to Openshift
 
 #### Setup: 
 1. **View -> Command Palette** -> Enter: `dev spaces: open openshift console`.
+3. Create a secret with environment variables.
    * **Secrets -> Create** and **Save** a new secret (from yaml) using this [example](resources/che-env.yaml).
    * **Edit ->** Change the values in the secret to match your environment. Your instructor will provide the values.
-2. **Extensions** -> Install the reccomended Python extension.
-3. **View -> Command Pallette** Enter: `run task` -> devfile -> Create a python virtual environment
-4. **Terminal -> New Terminal**
+4. **Extensions** -> Install the reccomended Python extension.
+5. **View -> Command Pallette** Enter: `run task` -> devfile -> Create a python virtual environment
+6. **Terminal -> New Terminal**
+   * [Install Weaviate](install-weaviate.md)
 ```bash
 curl ${WEAVIATE_URL} | jq
 ```
