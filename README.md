@@ -18,6 +18,7 @@
 - Security (Doesn't run your containers as root)
 
 ### Get access to Openshift
+- [Open this repo in DevSpaces](https://workspaces.openshift.com/f?url=https://github.com/bkoz/weaviate)
 - The easiest path is to signup for a [Developer Sandbox](https://developers.redhat.com/developer-sandbox)
 
 ### [Install Weaviate](install-weaviate.md) on Openshift
