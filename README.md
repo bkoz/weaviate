@@ -18,6 +18,8 @@
 
 ### Get Started
 - [Open this repo in the Developer Sandbox](https://workspaces.openshift.com/f?url=https://github.com/bkoz/weaviate)
+- ![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fimg.shields.io%2Fbadge%2Fhttps%3A%2F%2Fimg.shields.io%2Fbadge%2FOpen_in-DevSpaces?link=https%3A%2F%2Fworkspaces.openshift.com%2Ff%3Furl%3Dhttps%3A%2F%2Fgithub.com%2Fbkoz%2Fweaviate)
+
 
 ### Developer Tools: Eclipse-Che/DevSpaces
 - A full IDE experience with a code debugger.
