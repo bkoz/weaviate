@@ -98,5 +98,5 @@ helm uninstall weaviate
 #### Versions
 v0.1.0
 
-![Static Badge](https://img.shields.io/badge/click_me?link=http%3A%2F%2Fgithub.com)
+![Static Badge](https://img.shields.io/badge/click_me)
 
