@@ -96,7 +96,6 @@ helm uninstall weaviate
 - As a managed service from any of the major cloud providers.
 
 #### Versions
-v0.1.0
+v0.1.1
 
 ![Static Badge](https://img.shields.io/badge/click_me)
-
