@@ -25,13 +25,11 @@ def weaviate_connection() -> weaviate.Client:
     load_dotenv(override=True)
 
     WEAVIATE_API_KEY = os.getenv("WEAVIATE_API_KEY")
-    # WEAVIATE_DEFAULT_URL = "http://localhost:8080"
     WEAVIATE_URL = os.getenv("WEAVIATE_URL")
     HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 
-    # if WEAVIATE_URL == WEAVIATE_DEFAULT_URL:
-    #     logging.info('WEAVIATE_URL is not set, using http://localhost:8080')
     if WEAVIATE_API_KEY == None:
         logging.info('WEAVIATE_API_KEY is not set, using anonymous access.')
         auth_config = None
@@ -40,8 +38,16 @@ def weaviate_connection() -> weaviate.Client:
         auth_config = weaviate.AuthApiKey(api_key = WEAVIATE_API_KEY)
     if HUGGINGFACE_API_KEY == None:
         logging.info('HUGGINGFACE_API_KEY is not set.')
+    else:
+        logging.info('HUGGINGFACE_API_KEY is set.')
     if OPENAI_API_KEY == None:
         logging.info('OPENAI_API_KEY is not set.')
+    else:
+        logging.info('OPENAI_API_KEY is set.')
+    if COHERE_API_KEY == None:
+        logging.info('COHERE_API_KEY is not set.')
+    else:
+        logging.info('COHERE_API_KEY is set.')
 
     logging.info("WEAVIATE_URL: %s", WEAVIATE_URL)
     
@@ -53,7 +59,9 @@ def weaviate_connection() -> weaviate.Client:
         auth_client_secret=auth_config,
         additional_headers={
             "X-HuggingFace-Api-Key": HUGGINGFACE_API_KEY,
-            "X-OpenAI-Api-Key" : OPENAI_API_KEY}
+            "X-OpenAI-Api-Key" : OPENAI_API_KEY,
+            "X-Cohere-Api-Key": COHERE_API_KEY
+            }
         )
     else:
         logging.info('Trying to connect to the Weaviate embedded server')
@@ -62,7 +70,9 @@ def weaviate_connection() -> weaviate.Client:
             auth_client_secret=auth_config,
             additional_headers={
             "X-HuggingFace-Api-Key": HUGGINGFACE_API_KEY,
-            "X-OpenAI-Api-Key" : OPENAI_API_KEY}
+            "X-OpenAI-Api-Key" : OPENAI_API_KEY,
+            "X-Cohere-Api-Key": COHERE_API_KEY
+            }
         )
     
     try:
@@ -105,23 +115,23 @@ def import_questions(client: weaviate.Client) -> None:
         client.schema.create_class(class_obj)
 
 
-    #
-    # Load some questions.
-    #
-    resp = requests.get(
-        'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json')
-    data = json.loads(resp.text)  # Load data
+        #
+        # Load some questions.
+        #
+        resp = requests.get(
+            'https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json')
+        data = json.loads(resp.text)  # Load data
 
-    client.batch.configure(batch_size=100)  # Configure batch
-    with client.batch as batch:  # Initialize a batch process
-        for i, d in enumerate(data):  # Batch import data
-            print(f"importing question: {i+1}")
-            properties = {
-                "answer": d["Answer"],
-                "question": d["Question"],
-                "category": d["Category"],
-            }
-            batch.add_data_object(
-                data_object=properties,
-                class_name="Question"
-            )
+        client.batch.configure(batch_size=100)  # Configure batch
+        with client.batch as batch:  # Initialize a batch process
+            for i, d in enumerate(data):  # Batch import data
+                print(f"importing question: {i+1}")
+                properties = {
+                    "answer": d["Answer"],
+                    "question": d["Question"],
+                    "category": d["Category"],
+                }
+                batch.add_data_object(
+                    data_object=properties,
+                    class_name="Question"
+                )

@@ -85,7 +85,7 @@ serviceAccountName:
 # storage.fullnameOverride field set, then the default pvc will not be
 # created, instead the one defined in fullnameOverride will be used. Increase the storage size as needed.
 storage:
-  size: 2Gi
+  size: 5Gi
   storageClassName: ""
 
 # The service controls how weaviate is exposed to the outside world. If you
@@ -150,8 +150,8 @@ authentication:
     enabled: true
     # Any number of allowed API Keys as plain text
     allowed_keys:
-      - readOnly-api-key
-      - admin-api-key
+      - readOnly-api-key-change-me
+      - admin-api-key-change-me
     #   # You can either set a single user for all the listed Allowed API keys OR
     #   # one user per API Key, i.e. length(apikey.allowed_keys) == length(apikey.users) OR
     #   # length(apikey.users) == 1
@@ -695,7 +695,7 @@ modules:
   text2vec-cohere:
 
     # enable if you want to use Cohere module
-    enabled: false
+    enabled: true
 
     # Set your Cohere API Key to be passed to Weaviate pod as
     # an environment variable
